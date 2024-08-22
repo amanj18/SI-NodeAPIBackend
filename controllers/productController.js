@@ -155,5 +155,22 @@ const updateProductStarRating = async (req, res) => {
     }
 }
 
-export { getProducts, getProductById, getProductsByCategory, getProductByPrice, createNewProduct ,updateProductStarRating};
+const deleteProductById = async (req,res) => {
+    try {
+        const id = req.params.id;
+        const deleteQuery = `DELETE FROM practice.products WHERE productid=${id}`;
+        const result = await pool.query(deleteQuery);
+        if(result.rowCount === 1){
+            return res.status(200).json({message: 'Product deleted successfully'});
+        }
+        else{
+            return res.status(404).json({error: 'Product not found'});
+        }
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+
+export { getProducts, getProductById, getProductsByCategory, getProductByPrice, createNewProduct ,updateProductStarRating ,deleteProductById};
 
