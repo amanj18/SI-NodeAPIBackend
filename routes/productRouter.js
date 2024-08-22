@@ -1,6 +1,6 @@
 import express from 'express';
 import { getProductById, getProducts, getProductsByCategory ,getProductByPrice ,createNewProduct, updateProductStarRating, deleteProductById } from "../controllers/productController.js"
-import authenticateToken from '../controllers/middlewares/authMiddleware.js';
+import authenticateToken from '../middlewares/authMiddleware.js';
 
 const productsRouter = express.Router()
 productsRouter.get('/', getProducts)
