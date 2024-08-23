@@ -43,7 +43,11 @@ const loginUser = async (req, res) => {
                 return res.status(401).json({ message: 'Invalid Credentials : Password Did Not Match' })
             }
             else {
-                return res.status(200).json({ message: 'Password match'})
+                // return res.status(200).json({ message: 'Password match'})
+                const secretKey = 'your_secret_key';
+                const token = jwt.sign({ user_id: user.user_id }, secretKey, { expiresIn: '5m' });
+                res.status(200).json(user)
+
             }
         }
     }

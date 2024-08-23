@@ -1,12 +1,16 @@
-import pkg from 'pg';
-const { Pool } = pkg;
+// import pkg from "pg";
+import pg from "pg"
+const user = process.env.DB_USER
+// const password = process.env.PASSWORD
 
-const pool = new Pool({
-    user: 'postgres',
+// const { Pool } = pkg;
+
+const pool = new pg.Pool({
+    user: user,
     host: 'localhost',
     database: 'forumdb',
-    password: 'postgres',
+    password: process.env.PASSWORD,
     port: 5432,
-})
+});
 
-export default pool
+export default pool;
